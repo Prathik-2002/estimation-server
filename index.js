@@ -10,7 +10,7 @@ app.get('/ChargingTime', (req, res) => {
     const estimatedChargingTime = estimateChargingTime(connectorPower, batteryCapacity, SoC);
     res.status(200).json({estimatedChargingTime: estimatedChargingTime});
   } catch (InputError) {
-    res.status(404).j;
+    res.status(404).json({error: InputError.message});
   }
 });
 
