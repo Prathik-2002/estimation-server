@@ -46,13 +46,13 @@ describe('GET /ChargingTime', ()=>{
       it(`should give 
       [Response] - Status: 200, estimatedChargingTime: ${positiveTestcase.estimatedChargingTime}
       [input] - ${inputToString(positiveTestcase.input)}`, async () => {
-        const ChargingTimeresponse = await request(app)
+        const positiveChargingTimeresponse = await request(app)
             .get('/ChargingTime')
             .query(positiveTestcase.input);
 
-        expect(ChargingTimeresponse.body.estimatedChargingTime)
+        expect(positiveChargingTimeresponse.body.estimatedChargingTime)
             .equal(positiveTestcase.estimatedChargingTime);
-        expect(ChargingTimeresponse.status).equal(200);
+        expect(positiveChargingTimeresponse.status).equal(200);
       });
     });
   });
@@ -61,13 +61,13 @@ describe('GET /ChargingTime', ()=>{
       it(`should return 
       [Response] - Status: 404, errormessage: ${negativeTestcase.message}
       for [input] - ${inputToString(negativeTestcase.input)}`, async () => {
-        const ChargingTimeresponse = await request(app)
+        const negativeChargingTimeresponse = await request(app)
             .get('/ChargingTime')
             .query(negativeTestcase.input);
 
-        expect(ChargingTimeresponse.body.error)
+        expect(negativeChargingTimeresponse.body.error)
             .equal(negativeTestcase.message);
-        expect(ChargingTimeresponse.status).equal(404);
+        expect(negativeChargingTimeresponse.status).equal(404);
       });
     });
   });
