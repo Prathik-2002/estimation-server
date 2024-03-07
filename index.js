@@ -7,10 +7,17 @@ app.get('/ChargingTime', (req, res) => {
   const batteryCapacity = req.query.batteryCapacity;
   const SoC = req.query.SoC;
   try {
-    const estimatedChargingTimeInMin = estimateChargingTimeInMin(connectorPower, batteryCapacity, SoC);
+    const estimatedChargingTimeInMin = estimateChargingTimeInMin(
+        connectorPower,
+        batteryCapacity,
+        SoC,
+    );
     res.status(200).json({estimatedChargingTimeInMin: estimatedChargingTimeInMin});
   } catch (InputError) {
-    res.status(404).json({error: InputError.message});
+    res.status(404).json({
+      error: InputError.message,
+      estimatedChargingTimeInMin: 'Not Available',
+    });
   }
 });
 
