@@ -1,5 +1,5 @@
 const express = require('express');
-const {estimateChargingTime} = require('./estimate');
+const {estimateChargingTimeInMin} = require('./estimate');
 const app = express();
 const PORT = 5050;
 app.get('/ChargingTime', (req, res) => {
