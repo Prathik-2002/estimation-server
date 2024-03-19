@@ -1,5 +1,6 @@
+process.env.PORT = 3000;
 const request = require('supertest');
-const {app, closeServer} = require('../index');
+const {app, server} = require('../index');
 const {expect} = require('chai');
 
 const inputToString = (input) => {
@@ -38,8 +39,8 @@ const NegativeTestcase = [
   },
 ];
 describe('GET /ChargingTime', ()=>{
-  after(()=>{
-    closeServer();
+  after(() => {
+    server.close();
   });
   describe('Positive testcases', ()=>{
     PositiveTestcases.forEach((positiveTestcase) => {
@@ -50,7 +51,7 @@ describe('GET /ChargingTime', ()=>{
             .get('/ChargingTime')
             .query(positiveTestcase.input);
 
-        expect(chargingTimePositiveResponse.body.estimatedChargingTime)
+        expect(chargingTimePositiveResponse.body.estimatedChargingTimeInMin)
             .equal(positiveTestcase.estimatedChargingTime);
         expect(chargingTimePositiveResponse.status).equal(200);
       });

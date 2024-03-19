@@ -1,0 +1,12 @@
+# coverage/
+# gates/
+# test/
+# reports/
+# *.sh
+# LICENSE
+# *.json
+# .node_modules/
+# .nyc_output
+# *.stryker-tmp
+# .github
+# Dockerfile

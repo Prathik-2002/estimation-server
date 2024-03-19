@@ -1,7 +1,7 @@
 const express = require('express');
 const {estimateChargingTimeInMin} = require('./estimate');
 const app = express();
-const PORT = 5050;
+const PORT = process.env.PORT || 3000;
 app.get('/ChargingTime', (req, res) => {
   const connectorPower = req.query.connectorPower;
   const batteryCapacity = req.query.batteryCapacity;
@@ -20,9 +20,7 @@ app.get('/ChargingTime', (req, res) => {
     });
   }
 });
-
-const server = app.listen(PORT);
-const closeServer = () => {
-  server.close();
-};
-module.exports = {app, closeServer};
+const server = app.listen(PORT, ()=> {
+  console.log('listening on port:', PORT);
+});
+module.exports = {app, server};
